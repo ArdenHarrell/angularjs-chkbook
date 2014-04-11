@@ -1,0 +1,25 @@
+.row
+	.col-lg-12
+		div(ng-controller='checkbookCtrl')		
+			form.simple-form(novalidate='novalidate')
+				div
+					label(for='firstName') First Name
+				input#firstName(type='text', ng-model='user.firstName')
+				div
+					label(for='lastName') Last Name
+				input#lastName(type='text', ng-model='user.lastName')
+				div
+					label(for='amount') Amount
+				input#amount(type='text', ng-model='user.amount')
+				
+				div(ng-hide='!user.firstName.length && !user.amount.length')
+					label Your check...
+					div(ng-hide='!user.firstName.length && !user.lastName.length')
+						label Name: {{ user | displayName }}
+
+					div(ng-hide='!user.amount.length')	
+						label Amount: {{ user.amount | currency }}
+
+					div(ng-hide='!user.amount.length')	
+						label Words: {{ user.amount | toWords | capitalize }}
+				
